@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Board</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        #message-board {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        .message {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .message:last-child {
+            border-bottom: none;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="message-board">
+        <h1>Message Board</h1>
+        <div id="messages">
+            <!-- Messages will be displayed here -->
+        </div>
+        <form id="message-form">
+            <input type="text" id="username" placeholder="Your name" required>
+            <textarea id="message" placeholder="Your message" rows="4" required></textarea>
+            <input type="submit" value="Post Message">
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('message-form');
+        const messagesDiv = document.getElementById('messages');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const message = document.getElementById('message').value;
+
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.innerHTML = `<strong>${username}:</strong> <p>${message}</p>`;
+            messagesDiv.appendChild(messageElement);
+
+            // Clear the input fields
+            form.reset();
+        });
+    </script>
+</body>
+</html>
